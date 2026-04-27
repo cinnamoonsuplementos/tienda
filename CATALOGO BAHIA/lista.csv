@@ -1,0 +1,26 @@
+CATEGORIA,Marca,Descripción,Cantidad,Duración (cantidad de servicios),Sabor,Precio,referencia nombre de archivo png
+AMINOACIDOS,STAR NUTRITION,BCAA 2000,120 cápsulas,30,-,"$20,000",5
+Control de Peso y Definición,BODY ADVANCE,Quemador de grasas Lipo XTreme,240 grs,30,-,"$12,300",11
+CREATINA,BODY ADVANCE,Creatina (Doypack),300 grs,60,-,"$20,000",13
+CREATINA,BODY ADVANCE,Creatina (Pote),300 grs,60,-,"$23,000",21
+CREATINA,BODY ADVANCE,Creatina (Pote),150 grs,30,-,"$13,000",22
+CREATINA,BODY ADVANCE,Creatina Power (Pote),300 grs,30,Multifruta o Uva,"$13,000",31
+CREATINA,ENA,Creatina (Doypack),342 grs,60,Naranja,"$29,000",14
+CREATINA,GENTECH,Creatina en comprimidos masticables,150 comprimidos,25,Frutilla,"$22,000",29
+CREATINA,STAR NUTRITION,Creatina (Doypack),300 grs,60,-,"$30,000",19
+CREATINA,STAR NUTRITION,Creatina (Pote),150 grs,30,,"$19,000",25
+PRE-ENTRENO Y ENERGÍA,GENTECH,Iron Gel BCAA,6 unidades,6,Cocoa,"$6,500",33
+PRE-ENTRENO Y ENERGÍA,STAR NUTRITION,Cafeina,30 cápsulas,30,-,"$8,900",32
+PRE-ENTRENO Y ENERGÍA,STAR NUTRITION,Pre-Entrenamiento TNT - Dynamite,240 grs,30,Varios sabores,"$27,000",37
+PROTEINAS,BODY ADVANCE,Proteína (Pote),910 grs,30,"Chocolate, Vainilla, Dulce de Leche o Frutos Rojos","$30,000",42
+PROTEINAS,STAR NUTRITION,Proteína (Doypack),908 grs,30,Chocolate o Vainilla,"$46,000",41
+"SALUD, BIENESTAR Y VITAMINAS",BODY ADVANCE,Citrato de Magnesio,175 grs,70,-,"$13,000",48
+"SALUD, BIENESTAR Y VITAMINAS",ENA,Citrato de Magnesio,60 cápsulas,30,-,"$15,000",52
+"SALUD, BIENESTAR Y VITAMINAS",ENA,Multivitaminicos,60 cápsulas,60,-,"$18,800",56
+"SALUD, BIENESTAR Y VITAMINAS",STAR NUTRITION,Citrato de Magnesio,60 cápsulas,30,-,"$15,000",51
+"SALUD, BIENESTAR Y VITAMINAS",STAR NUTRITION,Colágeno,210 grs,20,Frutos Rojos o Limón,"$22,000",54
+"SALUD, BIENESTAR Y VITAMINAS",STAR NUTRITION,Colágeno Sport,360 grs,30,Naranja,"$24,000",55
+"SALUD, BIENESTAR Y VITAMINAS",STAR NUTRITION,Vitamina C,60 cápsulas,30,-,"$9,000",60
+SNACKS,GRANGER,Cupcakes Proteícos,360 grs,8,Chocolate,"$13,000",70
+SNACKS,GRANGER,Pancakes KETO,200 grs,8,Vainilla,"$11,000",71
+SNACKS,GRANGER,Pancakes Proteícos,400 grs,16,Chocolate o Vainilla,"$15,000",72

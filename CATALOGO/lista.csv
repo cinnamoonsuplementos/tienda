@@ -1,0 +1,73 @@
+CATEGORIA,Marca,Descripción,Cantidad,Duración (cantidad de servicios),Sabor,Precio,referencia nombre de archivo png
+ACCESORIOS,-,Guantes,-,-,-,"$18,000",1
+ACCESORIOS,-,Scoops 5gr - 7.5gr - 10gr,-,-,-,"$1,500",2
+ACCESORIOS,-,Straps,-,-,-,"$16,000",3
+AMINOACIDOS,STAR NUTRITION,Arginina,150 grs,39,-,"$16,000",4
+AMINOACIDOS,STAR NUTRITION,BCAA 2000,120 cápsulas,30,-,"$16,000",5
+AMINOACIDOS,STAR NUTRITION,Glutamina,150 grs,30,-,"$18,000",6
+AMINOACIDOS,STAR NUTRITION,Glutamina,300 grs,60,-,"$30,000",7
+AMINOACIDOS,STAR NUTRITION,MTOR BCAA,270 grs,20,Multifruta o Limón,"$28,000",8
+Control de Peso y Definición,STAR NUTRITION,Carnitina,60 cápsulas,30,-,"$15,000",9
+Control de Peso y Definición,STAR NUTRITION,Mutant Mass,"1,5 kg",17,Chocolate o Vainilla,"$36,000",10
+Control de Peso y Definición,BODY ADVANCE,Quemador de grasas Lipo XTreme,240 grs,30,,"$13,000",11
+Control de Peso y Definición,STAR NUTRITION,Quemadores Thermo Fuel Max,120 cápsulas,30,-,"$12,000",12
+CREATINA,BODY ADVANCE,Creatina (Doypack),300 grs,60,-,"$16,000",13
+CREATINA,ENA,Creatina (Doypack),342 grs,60,Naranja,"$26,000",14
+CREATINA,ENA,Creatina (Doypack),300 grs,46,Multifruta,"$26,000",15
+CREATINA,ENA,Creatina (Doypack),300 grs,60,-,"$26,000",16
+CREATINA,GENTECH,Creatina (Doypack),500 grs,100,-,"$42,000",17
+CREATINA,GOLD NUTRITION,Creatina (Doypack),300 grs,60,-,"$22,000",18
+CREATINA,STAR NUTRITION,Creatina (Doypack),300 grs,60,-,"$26,000",19
+CREATINA,STAR NUTRITION,Creatina (Doypack),300 grs,60,Multifruta,"$24,000",20
+CREATINA,BODY ADVANCE,Creatina (Pote),300 grs,60,-,"$18,000",21
+CREATINA,BODY ADVANCE,Creatina (Pote),150 grs,30,-,"$12,000",22
+CREATINA,GENERATION FIT,Creatina (Pote),300grss,60,-,"$20,000",23
+CREATINA,ONE FIT,Creatina (Pote),200,40,,"$13,000",24
+CREATINA,STAR NUTRITION,Creatina (Pote),150 grs,30,,"$16,000",25
+CREATINA,STAR NUTRITION,Creatina (Pote),300 grs,60,-,"$29,000",26
+CREATINA,STAR NUTRITION,Creatina (Pote),500 grs,100,-,"$44,000",27
+CREATINA,STAR NUTRITION,Creatina (Pote),1 kg,200,-,"$76,000",28
+CREATINA,GENTECH,Creatina en comprimidos masticables,150 comprimidos,25,Frutilla,"$20,000",29
+CREATINA,GOOM,Creatina en gomitas,120 gomitas,30,,"$36,000",30
+CREATINA,BODY ADVANCE,Creatina Power (Pote),300 grs,30,Multifruta o Uva,"$13,000",31
+PRE-ENTRENO Y ENERGÍA,STAR NUTRITION,Cafeina,30 cápsulas,30,-,"$8,000",32
+PRE-ENTRENO Y ENERGÍA,STAR NUTRITION,Hydroplus,700 grs,20,Blue Razz o Lima,"$17,000",33
+PRE-ENTRENO Y ENERGÍA,ENA,Oxido Nítrico,210 grs,30,Naranja,"$17,000",34
+PRE-ENTRENO Y ENERGÍA,ENA,Pre-Entrenamiento PreWar,400 grs,20,Multifruta,"$27,000",35
+PRE-ENTRENO Y ENERGÍA,STAR NUTRITION,Pre-Entrenamiento Pump V8,285 grs,30,Varios sabores,"$30,000",36
+PRE-ENTRENO Y ENERGÍA,STAR NUTRITION,Pre-Entrenamiento TNT - Dynamite,240 grs,30,Varios sabores,"$22,000",37
+PROTEINAS,ENA,Proteína (Doypack),453 grs,14,Chocolate o Vainilla,"$35,000",38
+PROTEINAS,GENTECH,Proteína (Doypack),1kg,30,Chocolate o Vainilla,"$44,000",39
+PROTEINAS,ONE FIT,Proteína (Doypack),907 grs,30,Chocolate o Vainilla,"$31,000",40
+PROTEINAS,STAR NUTRITION,Proteína (Doypack),908 grs,30,Chocolate o Vainilla,"$45,000",41
+PROTEINAS,BODY ADVANCE,Proteína (Pote),910 grs,30,"Chocolate, Vainilla, Dulce de Leche o Frutos Rojos","$28,000",42
+PROTEINAS,BODY ADVANCE,Proteína (Pote),3 kg,100,Chocolate,"$76,000",43
+PROTEINAS,ENA,Proteína (Pote),930 grs,30,Chocolate o Vainilla,"$55,000",44
+PROTEINAS,STAR NUTRITION,Proteína (Pote),908 grs,30,Chocolate o Vainilla,"$49,000",45
+PROTEINAS,ENA,Proteína Vegana,779 grs,25,Chocolate o Vainilla,"$42,000",46
+PROTEINAS,STAR NUTRITION,Proteína Vegana,908 grs,30,Chocolate o Vainilla,"$40,000",47
+"SALUD, BIENESTAR Y VITAMINAS",BODY ADVANCE,Citrato de Magnesio,175 grs,70,-,"$10,000",48
+"SALUD, BIENESTAR Y VITAMINAS",ENA,Citrato de Magnesio,192 grs,60,Limonada,"$15,000",49
+"SALUD, BIENESTAR Y VITAMINAS",ONE FIT,Citrato de Magnesio,150,30,-,"$7,000",50
+"SALUD, BIENESTAR Y VITAMINAS",STAR NUTRITION,Citrato de Magnesio,60 cápsulas,30,-,"$15,000",51
+"SALUD, BIENESTAR Y VITAMINAS",STAR NUTRITION,Citrato de Magnesio,500 grs,142,Frutos Rojos,"$28,000",52
+"SALUD, BIENESTAR Y VITAMINAS",ONE FIT,Citrato de Potasio,150,30,-,"$7,000",53
+"SALUD, BIENESTAR Y VITAMINAS",STAR NUTRITION,Colágeno,210 grs,20,Frutos Rojos o Limón,"$19,000",54
+"SALUD, BIENESTAR Y VITAMINAS",STAR NUTRITION,Colágeno Sport,360 grs,30,Naranja,"$20,000",55
+"SALUD, BIENESTAR Y VITAMINAS",ENA,Multivitaminicos,60 cápsulas,60,-,"$17,000",56
+"SALUD, BIENESTAR Y VITAMINAS",STAR NUTRITION,Multivitamínicos,60 cápsulas,60,-,"$20,000",57
+"SALUD, BIENESTAR Y VITAMINAS",STAR NUTRITION,Omega 3,60 cápsulas,30,-,"$32,000",58
+"SALUD, BIENESTAR Y VITAMINAS",BODY ADVANCE,Testo Pro Max,240 grs,30,Uva,"$16,000",59
+"SALUD, BIENESTAR Y VITAMINAS",STAR NUTRITION,Vitamina C,60 cápsulas,30,-,"$8,000",60
+"SALUD, BIENESTAR Y VITAMINAS",BODY ADVANCE,ZMA,60 cápsulas,45,-,"$10,000",61
+SHAKERS,ENA,-,-,-,-,"$6,000",62
+SHAKERS,GENTECH,-,-,-,-,"$11,000",63
+SHAKERS,GOLD NUTRITION,-,-,-,-,"$8,000",64
+SHAKERS,GOLD NUTRITION,-,-,-,-,"$10,000",65
+SHAKERS,STAR NUTRITION,-,-,-,-,"$5,000",66
+SHAKERS,XBODY,-,-,-,-,"$11,000",67
+SNACKS,ENA,Barra proteíca,-,1 unidad,"Chocolate, Frutilla, Banana Split","$1,700",68
+SNACKS,ENA,Caja de barras proteícas,-,16 unidades,"Chocolate, Frutilla, Banana Split","$25,000",69
+SNACKS,GRANGER,Cupcakes Proteícos,360 grs,8,Chocolate,"$12,000",70
+SNACKS,GRANGER,Pancakes KETO,200 grs,8,Vainilla,"$9,000",71
+SNACKS,GRANGER,Pancakes Proteícos,400 grs,16,Chocolate o Vainilla,"$13,000",72
