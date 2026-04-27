@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CINNAMOON — Tienda Online</title>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F2EAFA; --dark: #38103F; --gold: #B87228; --gold2: #E09850;
+  --purple: #7C3CA0; --laven: #9C70B4; --cream: #F0E0C0; --hdr: #2C0C38;
+  --card: #fff; --radius: 14px; --shadow: 0 4px 22px rgba(56,16,63,.12);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--dark); }
+img { display: block; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ── LANDING ── */
+#landing {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: var(--hdr); position: relative; overflow: hidden; padding: 40px 20px;
+}
+#landing::before {
+  content: ''; position: absolute; top: -120px; right: -120px;
+  width: 420px; height: 420px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(220,195,245,.18) 0%, transparent 68%);
+  pointer-events: none;
+}
+#landing::after {
+  content: ''; position: absolute; bottom: -100px; left: -100px;
+  width: 360px; height: 360px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(220,195,245,.12) 0%, transparent 68%);
+  pointer-events: none;
+}
+.landing-logo {
+  width: 90px; height: 90px; border-radius: 50%; object-fit: cover;
+  box-shadow: 0 6px 32px rgba(56,16,63,.4), 0 0 0 2px rgba(224,152,80,.5);
+  margin-bottom: 20px; position: relative; z-index: 1;
+}
+.landing-brand {
+  font-family: 'Josefin Sans', sans-serif; font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 8px; text-transform: uppercase; color: #fff;
+  margin-bottom: 6px; position: relative; z-index: 1;
+}
+.landing-rule {
+  width: 80px; height: 1.5px; margin: 0 auto 14px;
+  background: linear-gradient(90deg, transparent, var(--gold2) 30%, var(--gold2) 70%, transparent);
+}
+.landing-slogan {
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.25rem;
+  color: var(--gold2); margin-bottom: 10px; position: relative; z-index: 1;
+}
+.landing-sub {
+  font-size: .75rem; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(240,224,192,.5); margin-bottom: 48px; position: relative; z-index: 1;
+}
+.landing-prompt {
+  font-family: 'Josefin Sans', sans-serif; font-size: .8rem; letter-spacing: 3px;
+  text-transform: uppercase; color: rgba(240,224,192,.45); margin-bottom: 24px; z-index: 1;
+}
+.city-selector { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; z-index: 1; }
+.city-card {
+  background: rgba(255,255,255,.06); border: 1px solid rgba(224,152,80,.3);
+  border-radius: 18px; padding: 32px 40px; min-width: 200px; text-align: center;
+  transition: transform .2s, background .2s, border-color .2s;
+  cursor: pointer;
+}
+.city-card:hover {
+  transform: translateY(-4px); background: rgba(255,255,255,.12);
+  border-color: var(--gold2);
+}
+.city-card .city-icon { font-size: 2.4rem; margin-bottom: 12px; }
+.city-card .city-name {
+  font-family: 'Josefin Sans', sans-serif; font-size: 1.15rem; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; color: #fff; margin-bottom: 6px;
+}
+.city-card .city-count {
+  font-size: .72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold2);
+}
+
+/* ── STORE ── */
+#store { display: none; flex-direction: column; min-height: 100vh; }
+#store.active { display: flex; }
+
+.store-header {
+  background: var(--hdr); padding: 12px 20px;
+  display: flex; align-items: center; gap: 12px;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 16px rgba(0,0,0,.3);
+}
+.store-header::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--gold2) 40%, var(--gold2) 60%, transparent);
+}
+.back-btn {
+  color: rgba(240,224,192,.6); font-size: 1.2rem; padding: 4px 8px;
+  border-radius: 8px; transition: color .2s, background .2s;
+  flex-shrink: 0;
+}
+.back-btn:hover { color: var(--gold2); background: rgba(255,255,255,.06); }
+.header-logo {
+  width: 38px; height: 38px; border-radius: 50%; object-fit: cover;
+  border: 1.5px solid rgba(224,152,80,.4); flex-shrink: 0;
+}
+.header-info { flex: 1; min-width: 0; }
+.header-brand {
+  font-family: 'Josefin Sans', sans-serif; font-size: .95rem; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; color: #fff; line-height: 1;
+}
+.header-city {
+  font-size: .68rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold2);
+  margin-top: 2px;
+}
+.cart-btn {
+  position: relative; padding: 8px 14px;
+  background: rgba(255,255,255,.08); border-radius: 10px;
+  color: #fff; font-family: 'Josefin Sans', sans-serif; font-size: .85rem;
+  font-weight: 600; letter-spacing: 1px; display: flex; align-items: center; gap: 6px;
+  border: 1px solid rgba(224,152,80,.25); transition: background .2s, border-color .2s;
+  flex-shrink: 0;
+}
+.cart-btn:hover { background: rgba(255,255,255,.14); border-color: var(--gold2); }
+.cart-badge {
+  background: var(--gold2); color: var(--dark); font-size: .65rem; font-weight: 700;
+  border-radius: 20px; padding: 1px 6px; min-width: 18px; text-align: center;
+}
+
+/* ── CATEGORY NAV ── */
+.cat-nav {
+  background: var(--hdr); padding: 0 16px 12px;
+  display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;
+  position: sticky; top: 63px; z-index: 99;
+}
+.cat-nav::-webkit-scrollbar { display: none; }
+.cat-pill {
+  flex-shrink: 0; padding: 6px 16px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(224,152,80,.2);
+  border-radius: 20px; color: rgba(240,224,192,.6);
+  font-family: 'Josefin Sans', sans-serif; font-size: .72rem; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase; transition: all .2s;
+}
+.cat-pill:hover { background: rgba(255,255,255,.1); color: #fff; }
+.cat-pill.active { background: var(--gold2); border-color: var(--gold2); color: var(--dark); }
+
+/* ── PRODUCT GRID ── */
+.store-body { flex: 1; padding: 20px 16px 100px; }
+.section-title {
+  font-family: 'Josefin Sans', sans-serif; font-size: .7rem; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--laven);
+  padding: 16px 0 10px; border-bottom: 1px solid rgba(156,112,180,.2);
+  margin-bottom: 14px;
+}
+.section-title span { color: var(--gold2); }
+#product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+}
+.prod-card {
+  background: var(--card); border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: hidden;
+  display: flex; flex-direction: column;
+  border: 1px solid rgba(156,112,180,.12);
+  transition: transform .2s, box-shadow .2s;
+}
+.prod-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(56,16,63,.18); }
+.prod-img-wrap {
+  background: var(--bg); padding: 14px 14px 8px;
+  display: flex; align-items: center; justify-content: center;
+  height: 150px;
+}
+.prod-img-wrap img {
+  max-width: 100%; max-height: 128px; object-fit: contain;
+  filter: drop-shadow(0 3px 8px rgba(56,16,63,.14));
+}
+.prod-info { padding: 10px 12px 12px; flex: 1; display: flex; flex-direction: column; }
+.prod-cat-tag {
+  font-size: .6rem; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--laven); margin-bottom: 4px;
+}
+.prod-brand {
+  font-family: 'Josefin Sans', sans-serif; font-size: .72rem; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 3px;
+}
+.prod-name {
+  font-family: 'Josefin Sans', sans-serif; font-size: .88rem; font-weight: 700;
+  color: var(--dark); line-height: 1.25; margin-bottom: 4px;
+}
+.prod-det { font-size: .72rem; color: var(--laven); line-height: 1.4; margin-bottom: 8px; flex: 1; }
+.prod-price {
+  font-family: 'Josefin Sans', sans-serif; font-size: 1.05rem; font-weight: 700;
+  color: var(--gold); margin-bottom: 10px;
+}
+.prod-actions { display: flex; align-items: center; gap: 6px; }
+.btn-add {
+  flex: 1; background: var(--dark); color: var(--cream);
+  font-family: 'Josefin Sans', sans-serif; font-size: .72rem; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 10px;
+  border-radius: 8px; transition: background .2s;
+}
+.btn-add:hover { background: var(--purple); }
+.qty-ctrl { display: flex; align-items: center; gap: 6px; flex: 1; justify-content: center; }
+.qty-btn {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--bg); border: 1.5px solid rgba(156,112,180,.3);
+  color: var(--dark); font-size: 1rem; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, border-color .2s;
+}
+.qty-btn:hover { background: var(--laven); color: #fff; border-color: var(--laven); }
+.qty-num {
+  font-family: 'Josefin Sans', sans-serif; font-size: .9rem; font-weight: 700;
+  color: var(--dark); min-width: 20px; text-align: center;
+}
+
+/* ── CART DRAWER ── */
+#cart-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.45); z-index: 200; backdrop-filter: blur(2px);
+}
+#cart-overlay.open { display: block; }
+#cart-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; width: min(400px, 100vw);
+  background: #fff; z-index: 201; transform: translateX(100%);
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column;
+  box-shadow: -8px 0 40px rgba(56,16,63,.18);
+}
+#cart-drawer.open { transform: translateX(0); }
+.cart-head {
+  background: var(--hdr); padding: 18px 20px;
+  display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+}
+.cart-head::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--gold2), transparent);
+}
+.cart-title {
+  font-family: 'Josefin Sans', sans-serif; font-size: 1rem; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; color: #fff;
+}
+.cart-close {
+  color: rgba(240,224,192,.6); font-size: 1.4rem; padding: 4px;
+  transition: color .2s;
+}
+.cart-close:hover { color: var(--gold2); }
+#cart-items { flex: 1; overflow-y: auto; padding: 16px; }
+.cart-empty {
+  text-align: center; padding: 60px 20px;
+  color: var(--laven); font-size: .9rem;
+}
+.cart-empty-icon { font-size: 3rem; margin-bottom: 12px; opacity: .4; }
+.cart-item {
+  display: flex; gap: 12px; padding: 12px 0;
+  border-bottom: 1px solid rgba(156,112,180,.15);
+}
+.cart-item-img {
+  width: 56px; height: 56px; flex-shrink: 0;
+  background: var(--bg); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.cart-item-img img { width: 100%; height: 100%; object-fit: contain; }
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-brand { font-size: .65rem; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); }
+.cart-item-name { font-family: 'Josefin Sans', sans-serif; font-size: .85rem; font-weight: 700; color: var(--dark); line-height: 1.2; margin-bottom: 4px; }
+.cart-item-det { font-size: .68rem; color: var(--laven); }
+.cart-item-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+.cart-item-price { font-family: 'Josefin Sans', sans-serif; font-size: .88rem; font-weight: 700; color: var(--gold); }
+.cart-item-ctrl { display: flex; align-items: center; gap: 6px; }
+.ci-btn {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--bg); border: 1.5px solid rgba(156,112,180,.3);
+  color: var(--dark); font-size: .9rem; display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+.ci-btn:hover { background: var(--laven); color: #fff; }
+.ci-num { font-size: .8rem; font-weight: 700; min-width: 16px; text-align: center; color: var(--dark); }
+.cart-foot { padding: 16px 20px; border-top: 1px solid rgba(156,112,180,.2); flex-shrink: 0; }
+.cart-total-row {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
+}
+.cart-total-label {
+  font-family: 'Josefin Sans', sans-serif; font-size: .8rem; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--laven);
+}
+.cart-total-val {
+  font-family: 'Josefin Sans', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--dark);
+}
+.btn-whatsapp {
+  width: 100%; padding: 14px; border-radius: 12px;
+  background: #25D366; color: #fff;
+  font-family: 'Josefin Sans', sans-serif; font-size: .85rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: background .2s, transform .15s;
+}
+.btn-whatsapp:hover { background: #1ebe59; transform: translateY(-1px); }
+.btn-whatsapp:disabled { background: #ccc; transform: none; cursor: not-allowed; }
+
+/* ── EMPTY STATE ── */
+#no-results {
+  grid-column: 1/-1; text-align: center; padding: 60px 20px;
+  color: var(--laven); display: none;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+  .landing-brand { font-size: 1.8rem; letter-spacing: 5px; }
+  .city-card { padding: 24px 28px; min-width: 150px; }
+  #product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .prod-img-wrap { height: 120px; }
+  .prod-img-wrap img { max-height: 100px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ LANDING ══ -->
+<section id="landing">
+  <img class="landing-logo" src="CATALOGO/logo.png" alt="CINNAMOON" onerror="this.style.display='none'">
+  <div class="landing-brand">CINNAMOON</div>
+  <div class="landing-rule"></div>
+  <div class="landing-slogan">Rendí más, viví mejor</div>
+  <div class="landing-sub">Tienda Online · 2026</div>
+  <div class="landing-prompt">Seleccioná tu sucursal</div>
+  <div class="city-selector">
+    <button class="city-card" onclick="openStore('mdp')">
+      <div class="city-icon">🏖️</div>
+      <div class="city-name">Mar del Plata</div>
+      <div class="city-count">72 productos</div>
+    </button>
+    <button class="city-card" onclick="openStore('bhb')">
+      <div class="city-icon">🌊</div>
+      <div class="city-name">Bahía Blanca</div>
+      <div class="city-count">25 productos</div>
+    </button>
+  </div>
+</section>
+
+<!-- ══ STORE ══ -->
+<section id="store">
+  <header class="store-header">
+    <button class="back-btn" onclick="goBack()" title="Volver">&#8592;</button>
+    <img class="header-logo" src="CATALOGO/logo.png" alt="CINNAMOON" onerror="this.style.display='none'">
+    <div class="header-info">
+      <div class="header-brand">CINNAMOON</div>
+      <div class="header-city" id="header-city"></div>
+    </div>
+    <button class="cart-btn" onclick="toggleCart()">
+      🛒 <span class="cart-badge" id="cart-count">0</span>
+    </button>
+  </header>
+
+  <nav class="cat-nav" id="cat-nav"></nav>
+
+  <div class="store-body">
+    <div id="product-grid"></div>
+    <div id="no-results">No hay productos en esta categoría.</div>
+  </div>
+</section>
+
+<!-- ══ CART ══ -->
+<div id="cart-overlay" onclick="toggleCart()"></div>
+<div id="cart-drawer">
+  <div class="cart-head">
+    <div class="cart-title">Tu carrito</div>
+    <button class="cart-close" onclick="toggleCart()">&#x2715;</button>
+  </div>
+  <div id="cart-items"></div>
+  <div class="cart-foot">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-val" id="cart-total">$0</span>
+    </div>
+    <button class="btn-whatsapp" id="btn-whatsapp" onclick="sendWhatsApp()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Comprar por WhatsApp
+    </button>
+  </div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const CAT_LABELS = {
+  'PROTEINAS': 'Proteínas',
+  'CREATINA': 'Creatina',
+  'PRE': 'Pre-Entreno',
+  'AMINOACIDOS': 'Aminoácidos',
+  'PESO': 'Peso y Definición',
+  'SALUD': 'Salud y Vitaminas',
+  'SNACKS': 'Snacks',
+  'SHAKERS': 'Shakers',
+  'ACCESORIOS': 'Accesorios',
+};
+const CAT_ORDER = ['PROTEINAS','CREATINA','PRE','AMINOACIDOS','PESO','SALUD','SNACKS','SHAKERS','ACCESORIOS'];
+
+const STORES = {
+  mdp: {
+    name: 'Mar del Plata',
+    wa: '5492236944699',
+    imgBase: 'CATALOGO/imagenes_proc/',
+    products: [
+      {n:1,  cat:'ACCESORIOS',  brand:'',              desc:'Guantes',                          qty:'',              svc:'',    flavor:'',                                          price:18000},
+      {n:2,  cat:'ACCESORIOS',  brand:'',              desc:'Scoops 5gr - 7.5gr - 10gr',        qty:'',              svc:'',    flavor:'',                                          price:1500},
+      {n:3,  cat:'ACCESORIOS',  brand:'',              desc:'Straps',                           qty:'',              svc:'',    flavor:'',                                          price:16000},
+      {n:4,  cat:'AMINOACIDOS', brand:'STAR NUTRITION',desc:'Arginina',                         qty:'150 grs',       svc:'39',  flavor:'',                                          price:16000},
+      {n:5,  cat:'AMINOACIDOS', brand:'STAR NUTRITION',desc:'BCAA 2000',                        qty:'120 cápsulas',  svc:'30',  flavor:'',                                          price:16000},
+      {n:6,  cat:'AMINOACIDOS', brand:'STAR NUTRITION',desc:'Glutamina',                        qty:'150 grs',       svc:'30',  flavor:'',                                          price:18000},
+      {n:7,  cat:'AMINOACIDOS', brand:'STAR NUTRITION',desc:'Glutamina',                        qty:'300 grs',       svc:'60',  flavor:'',                                          price:30000},
+      {n:8,  cat:'AMINOACIDOS', brand:'STAR NUTRITION',desc:'MTOR BCAA',                        qty:'270 grs',       svc:'20',  flavor:'Multifruta o Limón',                        price:28000},
+      {n:9,  cat:'PESO',        brand:'STAR NUTRITION',desc:'Carnitina',                        qty:'60 cápsulas',   svc:'30',  flavor:'',                                          price:15000},
+      {n:10, cat:'PESO',        brand:'STAR NUTRITION',desc:'Mutant Mass',                      qty:'1,5 kg',        svc:'17',  flavor:'Chocolate o Vainilla',                      price:36000},
+      {n:11, cat:'PESO',        brand:'BODY ADVANCE',  desc:'Quemador Lipo XTreme',             qty:'240 grs',       svc:'30',  flavor:'',                                          price:13000},
+      {n:12, cat:'PESO',        brand:'STAR NUTRITION',desc:'Thermo Fuel Max',                  qty:'120 cápsulas',  svc:'30',  flavor:'',                                          price:12000},
+      {n:13, cat:'CREATINA',    brand:'BODY ADVANCE',  desc:'Creatina (Doypack)',               qty:'300 grs',       svc:'60',  flavor:'',                                          price:16000},
+      {n:14, cat:'CREATINA',    brand:'ENA',           desc:'Creatina (Doypack)',               qty:'342 grs',       svc:'60',  flavor:'Naranja',                                   price:26000},
+      {n:15, cat:'CREATINA',    brand:'ENA',           desc:'Creatina (Doypack)',               qty:'300 grs',       svc:'46',  flavor:'Multifruta',                                price:26000},
+      {n:16, cat:'CREATINA',    brand:'ENA',           desc:'Creatina (Doypack)',               qty:'300 grs',       svc:'60',  flavor:'',                                          price:26000},
+      {n:17, cat:'CREATINA',    brand:'GENTECH',       desc:'Creatina (Doypack)',               qty:'500 grs',       svc:'100', flavor:'',                                          price:42000},
+      {n:18, cat:'CREATINA',    brand:'GOLD NUTRITION',desc:'Creatina (Doypack)',               qty:'300 grs',       svc:'60',  flavor:'',                                          price:22000},
+      {n:19, cat:'CREATINA',    brand:'STAR NUTRITION',desc:'Creatina (Doypack)',               qty:'300 grs',       svc:'60',  flavor:'',                                          price:26000},
+      {n:20, cat:'CREATINA',    brand:'STAR NUTRITION',desc:'Creatina (Doypack)',               qty:'300 grs',       svc:'60',  flavor:'Multifruta',                                price:24000},
+      {n:21, cat:'CREATINA',    brand:'BODY ADVANCE',  desc:'Creatina (Pote)',                  qty:'300 grs',       svc:'60',  flavor:'',                                          price:18000},
+      {n:22, cat:'CREATINA',    brand:'BODY ADVANCE',  desc:'Creatina (Pote)',                  qty:'150 grs',       svc:'30',  flavor:'',                                          price:12000},
+      {n:23, cat:'CREATINA',    brand:'GENERATION FIT',desc:'Creatina (Pote)',                  qty:'300 grs',       svc:'60',  flavor:'',                                          price:20000},
+      {n:24, cat:'CREATINA',    brand:'ONE FIT',       desc:'Creatina (Pote)',                  qty:'200 grs',       svc:'40',  flavor:'',                                          price:13000},
+      {n:25, cat:'CREATINA',    brand:'STAR NUTRITION',desc:'Creatina (Pote)',                  qty:'150 grs',       svc:'30',  flavor:'',                                          price:16000},
+      {n:26, cat:'CREATINA',    brand:'STAR NUTRITION',desc:'Creatina (Pote)',                  qty:'300 grs',       svc:'60',  flavor:'',                                          price:29000},
+      {n:27, cat:'CREATINA',    brand:'STAR NUTRITION',desc:'Creatina (Pote)',                  qty:'500 grs',       svc:'100', flavor:'',                                          price:44000},
+      {n:28, cat:'CREATINA',    brand:'STAR NUTRITION',desc:'Creatina (Pote)',                  qty:'1 kg',          svc:'200', flavor:'',                                          price:76000},
+      {n:29, cat:'CREATINA',    brand:'GENTECH',       desc:'Creatina comprimidos masticables', qty:'150 comprimidos',svc:'25', flavor:'Frutilla',                                  price:20000},
+      {n:30, cat:'CREATINA',    brand:'GOOM',          desc:'Creatina en gomitas',              qty:'120 gomitas',   svc:'30',  flavor:'',                                          price:36000},
+      {n:31, cat:'CREATINA',    brand:'BODY ADVANCE',  desc:'Creatina Power (Pote)',             qty:'300 grs',       svc:'30',  flavor:'Multifruta o Uva',                         price:13000},
+      {n:32, cat:'PRE',         brand:'STAR NUTRITION',desc:'Cafeína',                          qty:'30 cápsulas',   svc:'30',  flavor:'',                                          price:8000},
+      {n:33, cat:'PRE',         brand:'STAR NUTRITION',desc:'Hydroplus',                        qty:'700 grs',       svc:'20',  flavor:'Blue Razz o Lima',                          price:17000},
+      {n:34, cat:'PRE',         brand:'ENA',           desc:'Oxido Nítrico',                    qty:'210 grs',       svc:'30',  flavor:'Naranja',                                   price:17000},
+      {n:35, cat:'PRE',         brand:'ENA',           desc:'Pre-Entrenamiento PreWar',         qty:'400 grs',       svc:'20',  flavor:'Multifruta',                                price:27000},
+      {n:36, cat:'PRE',         brand:'STAR NUTRITION',desc:'Pre-Entrenamiento Pump V8',        qty:'285 grs',       svc:'30',  flavor:'Varios sabores',                            price:30000},
+      {n:37, cat:'PRE',         brand:'STAR NUTRITION',desc:'Pre-Entrenamiento TNT Dynamite',   qty:'240 grs',       svc:'30',  flavor:'Varios sabores',                            price:22000},
+      {n:38, cat:'PROTEINAS',   brand:'ENA',           desc:'Proteína (Doypack)',               qty:'453 grs',       svc:'14',  flavor:'Chocolate o Vainilla',                      price:35000},
+      {n:39, cat:'PROTEINAS',   brand:'GENTECH',       desc:'Proteína (Doypack)',               qty:'1 kg',          svc:'30',  flavor:'Chocolate o Vainilla',                      price:44000},
+      {n:40, cat:'PROTEINAS',   brand:'ONE FIT',       desc:'Proteína (Doypack)',               qty:'907 grs',       svc:'30',  flavor:'Chocolate o Vainilla',                      price:31000},
+      {n:41, cat:'PROTEINAS',   brand:'STAR NUTRITION',desc:'Proteína (Doypack)',               qty:'908 grs',       svc:'30',  flavor:'Chocolate o Vainilla',                      price:45000},
+      {n:42, cat:'PROTEINAS',   brand:'BODY ADVANCE',  desc:'Proteína (Pote)',                  qty:'910 grs',       svc:'30',  flavor:'Choco, Vainilla, DDL o Frutos Rojos',       price:28000},
+      {n:43, cat:'PROTEINAS',   brand:'BODY ADVANCE',  desc:'Proteína (Pote)',                  qty:'3 kg',          svc:'100', flavor:'Chocolate',                                 price:76000},
+      {n:44, cat:'PROTEINAS',   brand:'ENA',           desc:'Proteína (Pote)',                  qty:'930 grs',       svc:'30',  flavor:'Chocolate o Vainilla',                      price:55000},
+      {n:45, cat:'PROTEINAS',   brand:'STAR NUTRITION',desc:'Proteína (Pote)',                  qty:'908 grs',       svc:'30',  flavor:'Chocolate o Vainilla',                      price:49000},
+      {n:46, cat:'PROTEINAS',   brand:'ENA',           desc:'Proteína Vegana',                  qty:'779 grs',       svc:'25',  flavor:'Chocolate o Vainilla',                      price:42000},
+      {n:47, cat:'PROTEINAS',   brand:'STAR NUTRITION',desc:'Proteína Vegana',                  qty:'908 grs',       svc:'30',  flavor:'Chocolate o Vainilla',                      price:40000},
+      {n:48, cat:'SALUD',       brand:'BODY ADVANCE',  desc:'Citrato de Magnesio',              qty:'175 grs',       svc:'70',  flavor:'',                                          price:10000},
+      {n:49, cat:'SALUD',       brand:'ENA',           desc:'Citrato de Magnesio',              qty:'192 grs',       svc:'60',  flavor:'Limonada',                                  price:15000},
+      {n:50, cat:'SALUD',       brand:'ONE FIT',       desc:'Citrato de Magnesio',              qty:'150 grs',       svc:'30',  flavor:'',                                          price:7000},
+      {n:51, cat:'SALUD',       brand:'STAR NUTRITION',desc:'Citrato de Magnesio',              qty:'60 cápsulas',   svc:'30',  flavor:'',                                          price:15000},
+      {n:52, cat:'SALUD',       brand:'STAR NUTRITION',desc:'Citrato de Magnesio',              qty:'500 grs',       svc:'142', flavor:'Frutos Rojos',                              price:28000},
+      {n:53, cat:'SALUD',       brand:'ONE FIT',       desc:'Citrato de Potasio',               qty:'150 grs',       svc:'30',  flavor:'',                                          price:7000},
+      {n:54, cat:'SALUD',       brand:'STAR NUTRITION',desc:'Colágeno',                         qty:'210 grs',       svc:'20',  flavor:'Frutos Rojos o Limón',                      price:19000},
+      {n:55, cat:'SALUD',       brand:'STAR NUTRITION',desc:'Colágeno Sport',                   qty:'360 grs',       svc:'30',  flavor:'Naranja',                                   price:20000},
+      {n:56, cat:'SALUD',       brand:'ENA',           desc:'Multivitamínicos',                 qty:'60 cápsulas',   svc:'60',  flavor:'',                                          price:17000},
+      {n:57, cat:'SALUD',       brand:'STAR NUTRITION',desc:'Multivitamínicos',                 qty:'60 cápsulas',   svc:'60',  flavor:'',                                          price:20000},
+      {n:58, cat:'SALUD',       brand:'STAR NUTRITION',desc:'Omega 3',                          qty:'60 cápsulas',   svc:'30',  flavor:'',                                          price:32000},
+      {n:59, cat:'SALUD',       brand:'BODY ADVANCE',  desc:'Testo Pro Max',                    qty:'240 grs',       svc:'30',  flavor:'Uva',                                       price:16000},
+      {n:60, cat:'SALUD',       brand:'STAR NUTRITION',desc:'Vitamina C',                       qty:'60 cápsulas',   svc:'30',  flavor:'',                                          price:8000},
+      {n:61, cat:'SALUD',       brand:'BODY ADVANCE',  desc:'ZMA',                              qty:'60 cápsulas',   svc:'45',  flavor:'',                                          price:10000},
+      {n:62, cat:'SHAKERS',     brand:'ENA',           desc:'Shaker',                           qty:'',              svc:'',    flavor:'',                                          price:6000},
+      {n:63, cat:'SHAKERS',     brand:'GENTECH',       desc:'Shaker',                           qty:'',              svc:'',    flavor:'',                                          price:11000},
+      {n:64, cat:'SHAKERS',     brand:'GOLD NUTRITION',desc:'Shaker',                           qty:'',              svc:'',    flavor:'',                                          price:8000},
+      {n:65, cat:'SHAKERS',     brand:'GOLD NUTRITION',desc:'Shaker',                           qty:'',              svc:'',    flavor:'',                                          price:10000},
+      {n:66, cat:'SHAKERS',     brand:'STAR NUTRITION',desc:'Shaker',                           qty:'',              svc:'',    flavor:'',                                          price:5000},
+      {n:67, cat:'SHAKERS',     brand:'XBODY',         desc:'Shaker',                           qty:'',              svc:'',    flavor:'',                                          price:11000},
+      {n:68, cat:'SNACKS',      brand:'ENA',           desc:'Barra Proteíca',                   qty:'',              svc:'1 unidad',   flavor:'Choco, Frutilla o Banana Split',    price:1700},
+      {n:69, cat:'SNACKS',      brand:'ENA',           desc:'Caja de Barras Proteícas',         qty:'',              svc:'16 unidades',flavor:'Choco, Frutilla o Banana Split',    price:25000},
+      {n:70, cat:'SNACKS',      brand:'GRANGER',       desc:'Cupcakes Proteícos',               qty:'360 grs',       svc:'8',   flavor:'Chocolate',                                 price:12000},
+      {n:71, cat:'SNACKS',      brand:'GRANGER',       desc:'Pancakes KETO',                    qty:'200 grs',       svc:'8',   flavor:'Vainilla',                                  price:9000},
+      {n:72, cat:'SNACKS',      brand:'GRANGER',       desc:'Pancakes Proteícos',               qty:'400 grs',       svc:'16',  flavor:'Chocolate o Vainilla',                      price:13000},
+    ]
+  },
+  bhb: {
+    name: 'Bahía Blanca',
+    wa: '5492915084720',
+    imgBase: 'CATALOGO BAHIA/imagenes/',
+    products: [
+      {n:5,  cat:'AMINOACIDOS', brand:'STAR NUTRITION',desc:'BCAA 2000',                        qty:'120 cápsulas',  svc:'30',  flavor:'',                                          price:20000},
+      {n:11, cat:'PESO',        brand:'BODY ADVANCE',  desc:'Quemador Lipo XTreme',             qty:'240 grs',       svc:'30',  flavor:'',                                          price:12300},
+      {n:13, cat:'CREATINA',    brand:'BODY ADVANCE',  desc:'Creatina (Doypack)',               qty:'300 grs',       svc:'60',  flavor:'',                                          price:20000},
+      {n:14, cat:'CREATINA',    brand:'ENA',           desc:'Creatina (Doypack)',               qty:'342 grs',       svc:'60',  flavor:'Naranja',                                   price:29000},
+      {n:19, cat:'CREATINA',    brand:'STAR NUTRITION',desc:'Creatina (Doypack)',               qty:'300 grs',       svc:'60',  flavor:'',                                          price:30000},
+      {n:21, cat:'CREATINA',    brand:'BODY ADVANCE',  desc:'Creatina (Pote)',                  qty:'300 grs',       svc:'60',  flavor:'',                                          price:23000},
+      {n:22, cat:'CREATINA',    brand:'BODY ADVANCE',  desc:'Creatina (Pote)',                  qty:'150 grs',       svc:'30',  flavor:'',                                          price:13000},
+      {n:25, cat:'CREATINA',    brand:'STAR NUTRITION',desc:'Creatina (Pote)',                  qty:'150 grs',       svc:'30',  flavor:'',                                          price:19000},
+      {n:29, cat:'CREATINA',    brand:'GENTECH',       desc:'Creatina comprimidos masticables', qty:'150 comprimidos',svc:'25', flavor:'Frutilla',                                  price:22000},
+      {n:31, cat:'CREATINA',    brand:'BODY ADVANCE',  desc:'Creatina Power (Pote)',             qty:'300 grs',       svc:'30',  flavor:'Multifruta o Uva',                         price:13000},
+      {n:32, cat:'PRE',         brand:'STAR NUTRITION',desc:'Cafeína',                          qty:'30 cápsulas',   svc:'30',  flavor:'',                                          price:8900},
+      {n:33, cat:'PRE',         brand:'GENTECH',       desc:'Iron Gel BCAA',                    qty:'6 unidades',    svc:'6',   flavor:'Cocoa',                                     price:6500},
+      {n:37, cat:'PRE',         brand:'STAR NUTRITION',desc:'Pre-Entrenamiento TNT Dynamite',   qty:'240 grs',       svc:'30',  flavor:'Varios sabores',                            price:27000},
+      {n:41, cat:'PROTEINAS',   brand:'STAR NUTRITION',desc:'Proteína (Doypack)',               qty:'908 grs',       svc:'30',  flavor:'Chocolate o Vainilla',                      price:46000},
+      {n:42, cat:'PROTEINAS',   brand:'BODY ADVANCE',  desc:'Proteína (Pote)',                  qty:'910 grs',       svc:'30',  flavor:'Choco, Vainilla, DDL o Frutos Rojos',       price:30000},
+      {n:48, cat:'SALUD',       brand:'BODY ADVANCE',  desc:'Citrato de Magnesio',              qty:'175 grs',       svc:'70',  flavor:'',                                          price:13000},
+      {n:51, cat:'SALUD',       brand:'STAR NUTRITION',desc:'Citrato de Magnesio',              qty:'60 cápsulas',   svc:'30',  flavor:'',                                          price:15000},
+      {n:52, cat:'SALUD',       brand:'ENA',           desc:'Citrato de Magnesio',              qty:'60 cápsulas',   svc:'30',  flavor:'',                                          price:15000},
+      {n:54, cat:'SALUD',       brand:'STAR NUTRITION',desc:'Colágeno',                         qty:'210 grs',       svc:'20',  flavor:'Frutos Rojos o Limón',                      price:22000},
+      {n:55, cat:'SALUD',       brand:'STAR NUTRITION',desc:'Colágeno Sport',                   qty:'360 grs',       svc:'30',  flavor:'Naranja',                                   price:24000},
+      {n:56, cat:'SALUD',       brand:'ENA',           desc:'Multivitamínicos',                 qty:'60 cápsulas',   svc:'60',  flavor:'',                                          price:18800},
+      {n:60, cat:'SALUD',       brand:'STAR NUTRITION',desc:'Vitamina C',                       qty:'60 cápsulas',   svc:'30',  flavor:'',                                          price:9000},
+      {n:70, cat:'SNACKS',      brand:'GRANGER',       desc:'Cupcakes Proteícos',               qty:'360 grs',       svc:'8',   flavor:'Chocolate',                                 price:13000},
+      {n:71, cat:'SNACKS',      brand:'GRANGER',       desc:'Pancakes KETO',                    qty:'200 grs',       svc:'8',   flavor:'Vainilla',                                  price:11000},
+      {n:72, cat:'SNACKS',      brand:'GRANGER',       desc:'Pancakes Proteícos',               qty:'400 grs',       svc:'16',  flavor:'Chocolate o Vainilla',                      price:15000},
+    ]
+  }
+};
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let currentStore = null;
+let activeCategory = 'ALL';
+let cart = {}; // key: product.n → { product, qty }
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function fmtPrice(n) {
+  return '$' + n.toLocaleString('es-AR');
+}
+
+function imgSrc(store, n) {
+  return store.imgBase + n + '.png';
+}
+
+function productKey(n) { return String(n); }
+
+function getCategories(store) {
+  const cats = new Set(store.products.map(p => p.cat));
+  return CAT_ORDER.filter(c => cats.has(c));
+}
+
+function getDetails(p) {
+  const parts = [];
+  if (p.qty  && p.qty  !== '-') parts.push(p.qty);
+  if (p.svc  && p.svc  !== '-') parts.push(p.svc + ' serv.');
+  if (p.flavor && p.flavor !== '-') parts.push(p.flavor);
+  return parts.join(' · ');
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────────
+function openStore(key) {
+  currentStore = STORES[key];
+  cart = {};
+  activeCategory = 'ALL';
+  document.getElementById('header-city').textContent = currentStore.name;
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('store').classList.add('active');
+  buildCatNav();
+  renderProducts();
+  updateCartUI();
+}
+
+function goBack() {
+  document.getElementById('store').classList.remove('active');
+  document.getElementById('landing').style.display = '';
+  closeCart();
+  currentStore = null;
+  cart = {};
+}
+
+// ── CATEGORY NAV ──────────────────────────────────────────────────────────────
+function buildCatNav() {
+  const nav = document.getElementById('cat-nav');
+  nav.innerHTML = '';
+  const cats = ['ALL', ...getCategories(currentStore)];
+  cats.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-pill' + (cat === 'ALL' ? ' active' : '');
+    btn.textContent = cat === 'ALL' ? 'Todos' : (CAT_LABELS[cat] || cat);
+    btn.onclick = () => filterCategory(cat, btn);
+    nav.appendChild(btn);
+  });
+}
+
+function filterCategory(cat, btn) {
+  activeCategory = cat;
+  document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts();
+}
+
+// ── PRODUCT GRID ──────────────────────────────────────────────────────────────
+function renderProducts() {
+  const grid = document.getElementById('product-grid');
+  grid.innerHTML = '';
+  const noResults = document.getElementById('no-results');
+
+  const products = activeCategory === 'ALL'
+    ? currentStore.products
+    : currentStore.products.filter(p => p.cat === activeCategory);
+
+  if (products.length === 0) {
+    noResults.style.display = 'block';
+    return;
+  }
+  noResults.style.display = 'none';
+
+  // Group by category if showing all
+  if (activeCategory === 'ALL') {
+    const groups = {};
+    CAT_ORDER.forEach(c => { groups[c] = []; });
+    products.forEach(p => { if (groups[p.cat]) groups[p.cat].push(p); });
+    CAT_ORDER.forEach(cat => {
+      if (!groups[cat].length) return;
+      const title = document.createElement('div');
+      title.className = 'section-title';
+      title.innerHTML = CAT_LABELS[cat] || cat;
+      title.style.gridColumn = '1 / -1';
+      grid.appendChild(title);
+      groups[cat].forEach(p => grid.appendChild(buildProductCard(p)));
+    });
+  } else {
+    products.forEach(p => grid.appendChild(buildProductCard(p)));
+  }
+}
+
+function buildProductCard(p) {
+  const key = productKey(p.n);
+  const inCart = cart[key];
+  const qty = inCart ? inCart.qty : 0;
+  const det = getDetails(p);
+
+  const card = document.createElement('div');
+  card.className = 'prod-card';
+  card.id = 'card-' + key;
+  card.innerHTML = `
+    <div class="prod-img-wrap">
+      <img src="${imgSrc(currentStore, p.n)}" alt="${p.desc}" loading="lazy"
+           onerror="this.src=''; this.parentNode.innerHTML='<span style=\'font-size:2rem;opacity:.3\'>📦</span>'">
+    </div>
+    <div class="prod-info">
+      ${p.brand ? `<div class="prod-brand">${p.brand}</div>` : ''}
+      <div class="prod-name">${p.desc}</div>
+      ${det ? `<div class="prod-det">${det}</div>` : '<div class="prod-det"></div>'}
+      <div class="prod-price">${fmtPrice(p.price)}</div>
+      <div class="prod-actions" id="actions-${key}">
+        ${qty === 0
+          ? `<button class="btn-add" onclick="addToCart(${p.n})">+ Agregar</button>`
+          : `<div class="qty-ctrl">
+               <button class="qty-btn" onclick="changeQty(${p.n}, -1)">−</button>
+               <span class="qty-num">${qty}</span>
+               <button class="qty-btn" onclick="changeQty(${p.n}, 1)">+</button>
+             </div>`
+        }
+      </div>
+    </div>`;
+  return card;
+}
+
+function refreshCardActions(p) {
+  const key = productKey(p.n);
+  const el = document.getElementById('actions-' + key);
+  if (!el) return;
+  const qty = cart[key] ? cart[key].qty : 0;
+  el.innerHTML = qty === 0
+    ? `<button class="btn-add" onclick="addToCart(${p.n})">+ Agregar</button>`
+    : `<div class="qty-ctrl">
+         <button class="qty-btn" onclick="changeQty(${p.n}, -1)">−</button>
+         <span class="qty-num">${qty}</span>
+         <button class="qty-btn" onclick="changeQty(${p.n}, 1)">+</button>
+       </div>`;
+}
+
+// ── CART LOGIC ────────────────────────────────────────────────────────────────
+function addToCart(n) {
+  const key = productKey(n);
+  const p = currentStore.products.find(x => x.n === n);
+  if (!p) return;
+  cart[key] = cart[key] ? { product: p, qty: cart[key].qty + 1 } : { product: p, qty: 1 };
+  refreshCardActions(p);
+  updateCartUI();
+}
+
+function changeQty(n, delta) {
+  const key = productKey(n);
+  if (!cart[key]) return;
+  const newQty = cart[key].qty + delta;
+  if (newQty <= 0) {
+    delete cart[key];
+  } else {
+    cart[key].qty = newQty;
+  }
+  const p = currentStore.products.find(x => x.n === n);
+  refreshCardActions(p);
+  updateCartUI();
+}
+
+function removeFromCart(n) {
+  delete cart[productKey(n)];
+  const p = currentStore.products.find(x => x.n === n);
+  refreshCardActions(p);
+  updateCartUI();
+}
+
+function getCartItems() {
+  return Object.values(cart);
+}
+
+function getCartTotal() {
+  return getCartItems().reduce((sum, {product, qty}) => sum + product.price * qty, 0);
+}
+
+function getCartCount() {
+  return getCartItems().reduce((sum, {qty}) => sum + qty, 0);
+}
+
+function updateCartUI() {
+  const count = getCartCount();
+  document.getElementById('cart-count').textContent = count;
+
+  const total = getCartTotal();
+  document.getElementById('cart-total').textContent = fmtPrice(total);
+
+  const itemsEl = document.getElementById('cart-items');
+  const items = getCartItems();
+
+  if (items.length === 0) {
+    itemsEl.innerHTML = `<div class="cart-empty">
+      <div class="cart-empty-icon">🛒</div>
+      <p>Tu carrito está vacío</p>
+    </div>`;
+    document.getElementById('btn-whatsapp').disabled = true;
+    return;
+  }
+
+  document.getElementById('btn-whatsapp').disabled = false;
+  itemsEl.innerHTML = items.map(({product: p, qty}) => `
+    <div class="cart-item">
+      <div class="cart-item-img">
+        <img src="${imgSrc(currentStore, p.n)}" alt="${p.desc}"
+             onerror="this.src=''; this.parentNode.innerHTML='📦'">
+      </div>
+      <div class="cart-item-info">
+        ${p.brand ? `<div class="cart-item-brand">${p.brand}</div>` : ''}
+        <div class="cart-item-name">${p.desc}</div>
+        ${p.qty || p.svc ? `<div class="cart-item-det">${getDetails(p)}</div>` : ''}
+      </div>
+      <div class="cart-item-right">
+        <div class="cart-item-price">${fmtPrice(p.price * qty)}</div>
+        <div class="cart-item-ctrl">
+          <button class="ci-btn" onclick="changeQty(${p.n}, -1)">−</button>
+          <span class="ci-num">${qty}</span>
+          <button class="ci-btn" onclick="changeQty(${p.n}, 1)">+</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+// ── CART DRAWER ───────────────────────────────────────────────────────────────
+function toggleCart() {
+  const drawer = document.getElementById('cart-drawer');
+  const overlay = document.getElementById('cart-overlay');
+  const open = drawer.classList.toggle('open');
+  overlay.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+
+function closeCart() {
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── WHATSAPP ──────────────────────────────────────────────────────────────────
+function sendWhatsApp() {
+  const items = getCartItems();
+  if (!items.length) return;
+
+  const lines = items.map(({product: p, qty}) => {
+    const name = p.brand ? `${p.brand} — ${p.desc}` : p.desc;
+    const det = getDetails(p);
+    const sub = fmtPrice(p.price * qty);
+    return `• ${name}${det ? ' (' + det + ')' : ''} x${qty}  →  ${sub}`;
+  });
+
+  const total = fmtPrice(getCartTotal());
+  const msg = [
+    `🛒 *Pedido CINNAMOON — ${currentStore.name}*`,
+    '',
+    ...lines,
+    '',
+    `*Total: ${total}*`,
+    '',
+    '¡Quiero hacer este pedido! 💪'
+  ].join('\n');
+
+  const url = `https://wa.me/${currentStore.wa}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+}
+</script>
+</body>
+</html>
